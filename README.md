@@ -38,4 +38,19 @@ module.exports = {
 ### Step 3: Set Up ERC-20 Contracts And Scripts
 For this guide, we use @openzeppelin/contracts package for audited and tested ERC20 contract! 
 1. Run `npm install @openzeppelin/contracts`
+2. `cd` into your `/contracts` folder, and add `YourCoinName.sol`
+3. Open the newly-create `.sol` file and copy-paste the following:
+```
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract YourCoinName is ERC20 {
+    uint constant _initial_supply = 100 * (10**18);
+    constructor() ERC20("YourCoinName", "GG") {
+        _mint(msg.sender, _initial_supply);
+    }
+}
+```
+4. Feel free to edit the initial supply by changing the `100` to how many tokens you would like your initial supply to be. You can put any number you'd like for this - make sure to leave the `(10**18)` as that multiplies the number we want as our supply to have 18 decimals.
